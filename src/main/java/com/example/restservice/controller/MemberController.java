@@ -3,10 +3,7 @@ package com.example.restservice.controller;
 import com.example.restservice.domain.Member;
 import com.example.restservice.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -30,6 +27,11 @@ public class MemberController {
         return memberService.findById(memberId);
     }
 
+    @PostMapping(consumes = APPLICATION_JSON_VALUE)
+    @ResponseStatus
+    public Mono<Member> create(Member member) {
+        return memberService.create(member);
+    }
 
 
 }

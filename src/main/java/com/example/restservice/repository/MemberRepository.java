@@ -6,6 +6,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -34,5 +35,9 @@ public class MemberRepository {
 
     public Mono<Member> findById(Integer memberId) {
         return Mono.justOrEmpty(memberMap.get(memberId));
+    }
+
+    public Mono<Member> save(Member member) {
+        return Mono.just(memberMap.putIfAbsent(member.getMemberId(), member));
     }
 }

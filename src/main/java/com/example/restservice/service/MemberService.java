@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 public class MemberService {
@@ -21,5 +19,9 @@ public class MemberService {
 
     public Mono<Member> findById(Integer memberId) {
         return memberRepository.findById(memberId);
+    }
+
+    public Mono<Member> create(Member member) {
+        return memberRepository.save(member);
     }
 }
